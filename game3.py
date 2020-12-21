@@ -4,6 +4,16 @@ import turtle
 turtle.setup(650,650)
 wn = turtle.Screen()
 wn.bgcolor('navy')
+#draw border
+mypen = turtle.Turtle()
+mypen.penup()
+mypen.setposition(-300,-300)
+mypen.pendown()
+mypen.pensize(3)
+for side in range(4):
+    mypen.forward(600)
+    mypen.left(90)
+mypen.hideturtle()
 #create player turtle
 player = turtle.Turtle()
 player.color('darkorange')
@@ -29,3 +39,11 @@ turtle.onkey(turn_right, 'Right')
 turtle.onkey(increase_speed, 'Up')
 while True:
     player.forward(speed)
+
+    #boundary player checking x coordinate
+    if player.xcor() > 290 or player.xcor() < -290:
+        player.right(180)
+
+    #boundary player checking y coordinate
+    if player.ycor() > 290 or player.ycor() < -290:
+        player.right(180)
