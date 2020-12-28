@@ -6,6 +6,7 @@ import random
 turtle.setup(650,650)
 wn = turtle.Screen()
 wn.bgcolor('navy')
+wn.bgpic('game-bg.gif')
 wn.tracer(3)
 #draw border
 mypen = turtle.Turtle()
@@ -24,14 +25,15 @@ player.shape('turtle')
 player.penup()
 player.speed(0)
 #create food
-maxFoods = 6
+max_foods = 10
 foods = []
-for count in range(maxFoods):
+for count in range(max_foods):
     foods.append (turtle.Turtle())
     foods[count].color("lightgreen")
     foods[count].shape("circle")
     foods[count].penup()
     foods[count].speed(0)
+    foods[count].shapesize(.5)
     foods[count].setposition(random.randint(-290, 290), random.randint(-290, 290))
 #set speed variable
 speed = 1 
