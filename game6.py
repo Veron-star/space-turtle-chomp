@@ -49,21 +49,30 @@ turtle.onkey(increase_speed, 'Up')
 while True:
     player.forward(speed)
 
-    #boundary food checking x coordinate
-    if food.xcor() > 290 or food.xcor() < -290:
-        food.right(180)
+    #boundary player checking x coordinate
+    if player.xcor() > 290 or player.xcor() < -290:
+        player.right(180)
 
-    #boundary food checking y coordinate
-    if food.ycor() > 290 or food.ycor() < -290:
-        food.right(180)
+    #boundary player checking y coordinate
+    if player.ycor() > 290 or player.ycor() < -290:
+        player.right(180)
 
     #move food around
-    food.forward(3)
+    for count in range(maxFoods):
+        food.forward(3)
 
-    #collision checking
-    d = math.sqrt(math.pow(player.xcor() - food.xcor(), 2) + math.pow(player.ycor() - food.ycor(), 2))
-    if d < 20:
-        food.setposition(random.randint(-290, 290), random.randint(-290, 290))
-        food.right(random.randint(0, 360))
+        #boundary food checking x coordinate
+        if food.xcor() > 290 or food.xcor() < -290:
+            food.right(180)
+
+        #boundary food checking y coordinate
+        if food.ycor() > 290 or food.ycor() < -290:
+           food.right(180)
+
+        #collision checking
+        d = math.sqrt(math.pow(player.xcor() - food.xcor(), 2) + math.pow(player.ycor() - food.ycor(), 2))
+        if d < 20:
+           food.setposition(random.randint(-290, 290), random.randint(-290, 290))
+           food.right(random.randint(0, 360))
 
     

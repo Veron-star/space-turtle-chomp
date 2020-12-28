@@ -2,6 +2,7 @@
 import turtle
 import math
 import random
+import winsound
 #set up screen
 turtle.setup(650,650)
 wn = turtle.Screen()
@@ -47,6 +48,14 @@ def turn_right():
 def increase_speed():
     global speed
     speed += 1
+
+def isCollision(t1, t2):
+    d = math.sqrt(math.pow(t1.xcor()-t2.xcor(),2) + math.pow(t1.ycor()-t2.ycor(),2))
+    if d < 20:
+        return True
+    else:
+        return False
+        
 #set keyboard binding
 turtle.listen()
 turtle.onkey(turn_left, 'Left')
@@ -58,28 +67,32 @@ while True:
     #boundary player checking x coordinate
     if player.xcor() > 290 or player.xcor() < -290:
         player.right(180)
+        winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
 
     #boundary player checking y coordinate
     if player.ycor() > 290 or player.ycor() < -290:
         player.right(180)
+        winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
 
     #move food around
-    for count in range(maxFoods):
+    for food in foods:
         food.forward(3)
 
         #boundary food checking x coordinate
         if food.xcor() > 290 or food.xcor() < -290:
             food.right(180)
+            winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
 
         #boundary food checking y coordinate
         if food.ycor() > 290 or food.ycor() < -290:
-           food.right(180)
+            food.right(180)
+            winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
 
         #collision checking
-        d = math.sqrt(math.pow(player.xcor() - food.xcor(), 2) + math.pow(player.ycor() - food.ycor(), 2))
-        if d < 20:
-           food.setposition(random.randint(-290, 290), random.randint(-290, 290))
-           food.right(random.randint(0, 360))
+        if isCollision(player, food):
+            food.setposition(random.randint(-290, 290), random.randint(-290, 290))
+            food.right(random.randint(0, 360))
+            winsound.PlaySound('chomp.wav', winsound.SND_ASYNC)
         
      
 
