@@ -30,10 +30,20 @@ player.penup()
 player.speed(0)
 
 #create opponent turtle
+comp = turtle.Turtle()
+comp.color('red')
+comp.shape('turtle')
+comp.penup()
+comp.setposition(random.randint(-290, 290), random.randint(-290, 290))
 
+#create competition score
+mypen2 = turtle.Turtle()
+mypen2.color('red')
+mypen2.hideturtle()
 
 #create variable score
 score = 0
+comp_score = 0
 
 #create food
 max_foods = 10
@@ -75,6 +85,7 @@ turtle.onkey(turn_right, 'Right')
 turtle.onkey(increase_speed, 'Up')
 while True:
     player.forward(speed)
+    comp.forward(12)
 
     #boundary player checking x coordinate
     if player.xcor() > 290 or player.xcor() < -290:
@@ -84,6 +95,16 @@ while True:
     #boundary player checking y coordinate
     if player.ycor() > 290 or player.ycor() < -290:
         player.right(180)
+        winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
+
+    #boundary comp checking x coordinate
+    if comp.xcor() > 290 or comp.xcor() < -290:
+        comp.right(180)
+        winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
+
+    #boundary comp checking y coordinate
+    if comp.ycor() > 290 or comp.ycor() < -290:
+        comp.right(180)
         winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
 
     #move food around
@@ -107,13 +128,28 @@ while True:
             winsound.PlaySound('chomp.wav', winsound.SND_ASYNC)
             score +=1
 
-        #draw the score on the screen
-        mypen.undo()
-        mypen.penup()
-        mypen.hideturtle()
-        mypen.setposition(-290, 310)
-        scorestring ="Score: %s" % score
-        mypen.write(scorestring, False, align='left', font=('Arial', 14, 'normal'))
+            #draw the score on the screen
+            mypen.undo()
+            mypen.penup()
+            mypen.hideturtle()
+            mypen.setposition(200, 305)
+            scorestring ="Score: %s" % score
+            mypen.write(scorestring, False, align='left', font=('Arial', 14, 'normal'))
+
+        #comp collision checking
+        if isCollision(comp, food):
+            food.setposition(random.randint(-290, 290), random.randint(-290, 290))
+            food.right(random.randint(0, 360))
+            winsound.PlaySound('chomp.wav', winsound.SND_ASYNC)
+            comp_score +=1
+
+            #draw the comp score on the screen
+            mypen2.undo()
+            mypen2.penup()
+            mypen2.hideturtle()
+            mypen2.setposition(200, 305)
+            scorestring ="Score: %s" % comp_score
+            mypen2.write(scorestring, False, align='left', font=('Arial', 14, 'normal'))
         
      
 
