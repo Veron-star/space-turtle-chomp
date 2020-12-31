@@ -137,10 +137,9 @@ while True:
             score +=1
 
             #draw the score on the screen
-            mypen.undo()
             mypen.penup()
             mypen.hideturtle()
-            mypen.setposition(200, 305)
+            mypen.setposition(-290, 305)
             scorestring ="Score: %s" % score
             mypen.write(scorestring, False, align='left', font=('Arial', 14, 'normal'))
 
@@ -159,14 +158,14 @@ while True:
             scorestring ="Score: %s" % comp_score
             mypen2.write(scorestring, False, align='left', font=('Arial', 14, 'normal'))
 
-        if (int(score) > int(comp_score)):
-            mypen.setposition(0, 0)
-            mypen.color('yellow')
-            mypen.write("Game Over: You Win", False, align="center", font=("Arial", 28, "normal"))
-        else:
-            mypen.setposition(0, 0)
-            mypen.color("yellow")
-            mypen.write("Game Over: You Loose", False, align="center", font=("Arial", 28, "normal"))
+            if (int(score) > int(comp_score)):
+               mypen.setposition(0, 0)
+               mypen.color('yellow')
+               mypen.write("Game Over: You Win", False, align="center", font=("Arial", 28, "normal"))
+            else:
+               mypen.setposition(0, 0)
+               mypen.color("yellow")
+               mypen.write("Game Over: You Loose", False, align="center", font=("Arial", 28, "normal"))
         
      
 
