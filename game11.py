@@ -8,7 +8,7 @@ import time
 #set up screen
 turtle.setup(650,650)
 wn = turtle.Screen()
-wn.bgcolor('navy')
+wn.bgcolor('lightsteelblue')
 wn.bgpic('game-bg.gif')
 wn.tracer(3)
 
@@ -35,6 +35,7 @@ comp = turtle.Turtle()
 comp.color('red')
 comp.shape('turtle')
 comp.penup()
+comp.speed(3)
 comp.setposition(random.randint(-290, 290), random.randint(-290, 290))
 
 #create competition score
@@ -61,8 +62,8 @@ for count in range(max_foods):
 #set speed variable
 speed = 1 
 
-#set game time limit for 1 minute (60 seconds)
-timeout = time.time() + 10*6
+#set game time limit for 2 minute (120 seconds)
+timeout = time.time() + 20*6
 
 #define functions
 def turn_left():
@@ -72,6 +73,10 @@ def turn_right():
     player.right(30)
 
 def increase_speed():
+    global speed
+    speed += 1
+
+def decrease_speed():
     global speed
     speed += 1
 
@@ -87,6 +92,7 @@ turtle.listen()
 turtle.onkey(turn_left, 'Left')
 turtle.onkey(turn_right, 'Right')
 turtle.onkey(increase_speed, 'Up')
+turtle.onkey(decrease_speed, 'Down')
 while True:
     gametime = 0
     if gametime == 6 or time.time() > timeout:
@@ -166,6 +172,8 @@ while True:
                mypen.setposition(0, 0)
                mypen.color("yellow")
                mypen.write("Game Over: You Loose", False, align="center", font=("Arial", 28, "normal"))
+
+delay = raw_input("Press enter to finish. >")
         
      
 
