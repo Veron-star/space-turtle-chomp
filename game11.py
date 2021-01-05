@@ -6,7 +6,7 @@ import winsound
 import time
 
 #set up screen
-turtle.setup(650,650)
+turtle.setup(750,750)
 wn = turtle.Screen()
 wn.bgcolor('lightsteelblue')
 wn.bgpic('game-bg.gif')
@@ -78,7 +78,7 @@ def increase_speed():
 
 def decrease_speed():
     global speed
-    speed += 1
+    speed -= 1
 
 def isCollision(t1, t2):
     d = math.sqrt(math.pow(t1.xcor()-t2.xcor(),2) + math.pow(t1.ycor()-t2.ycor(),2))
@@ -167,13 +167,13 @@ while True:
             if (int(score) > int(comp_score)):
                mypen.setposition(0, 0)
                mypen.color('yellow')
-               mypen.write("Game Over: You Win", False, align="center", font=("Arial", 28, "normal"))
+               mypen.write("You Win", False, align="center", font=("Arial", 28, "normal"))
             else:
                mypen.setposition(0, 0)
                mypen.color("yellow")
-               mypen.write("Game Over: You Loose", False, align="center", font=("Arial", 28, "normal"))
+               mypen.write("You Loose", False, align="center", font=("Arial", 28, "normal"))
 
-delay = raw_input("Press enter to finish. >")
+
         
      
 
