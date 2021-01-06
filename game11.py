@@ -48,9 +48,9 @@ score = 0
 comp_score = 0
 
 #create food
-max_foods = 10
+maxFoods = 10
 foods = []
-for count in range(max_foods):
+for count in range(maxFoods):
     foods.append (turtle.Turtle())
     foods[count].color("lightgreen")
     foods[count].shape("circle")
@@ -63,7 +63,7 @@ for count in range(max_foods):
 speed = 1 
 
 #set game time limit for 2 minute (120 seconds)
-timeout = time.time() + 20*6
+timeout = time.time() + 12*10
 
 #define functions
 def turn_left():
@@ -72,11 +72,11 @@ def turn_left():
 def turn_right():
     player.right(30)
 
-def increase_speed():
+def increasespeed():
     global speed
     speed += 1
 
-def decrease_speed():
+def decreasespeed():
     global speed
     speed -= 1
 
@@ -91,16 +91,17 @@ def isCollision(t1, t2):
 turtle.listen()
 turtle.onkey(turn_left, 'Left')
 turtle.onkey(turn_right, 'Right')
-turtle.onkey(increase_speed, 'Up')
-turtle.onkey(decrease_speed, 'Down')
+turtle.onkey(increasespeed, 'Up')
+turtle.onkey(decreasespeed, 'Down')
+
 while True:
-    gametime = 0
-    if gametime == 6 or time.time() > timeout:
-        break
-    gametime = gametime - 1
     player.forward(speed)
     comp.forward(12)
-
+    gametime = 0
+    if gametime == 12 or time.time() > timeout:
+        break
+    gametime = gametime - 1
+    
     #boundary player checking x coordinate
     if player.xcor() > 290 or player.xcor() < -290:
         player.right(180)
@@ -143,11 +144,21 @@ while True:
             score +=1
 
             #draw the score on the screen
+            mypen.undo()
             mypen.penup()
             mypen.hideturtle()
             mypen.setposition(-290, 305)
             scorestring ="Score: %s" % score
             mypen.write(scorestring, False, align='left', font=('Arial', 14, 'normal'))
+
+            if (int(score) > int(comp_score)):
+               mypen.setposition(0, 0)
+               mypen.color('yellow')
+               mypen.write("You Win", False, align="center", font=("Arial", 28, "normal"))
+            else:
+               mypen.setposition(0, 0)
+               mypen.color("yellow")
+               mypen.write("You Loose", False, align="center", font=("Arial", 28, "normal"))
 
         #comp collision checking
         if isCollision(comp, food):
@@ -164,14 +175,11 @@ while True:
             scorestring ="Score: %s" % comp_score
             mypen2.write(scorestring, False, align='left', font=('Arial', 14, 'normal'))
 
-            if (int(score) > int(comp_score)):
-               mypen.setposition(0, 0)
-               mypen.color('yellow')
-               mypen.write("You Win", False, align="center", font=("Arial", 28, "normal"))
-            else:
-               mypen.setposition(0, 0)
-               mypen.color("yellow")
-               mypen.write("You Loose", False, align="center", font=("Arial", 28, "normal"))
+        
+
+            
+
+
 
 
         
