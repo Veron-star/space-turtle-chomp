@@ -12,5 +12,5 @@ Original Python game created by Christian Thompson aka @TokyoEdTech. BHP team mo
 ## Contributor: 
 Credit: www.christianthompson.com
 
-## Heroku:
+![](/screenshot.PNG)
 

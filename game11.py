@@ -151,14 +151,14 @@ while True:
             scorestring ="Score: %s" % score
             mypen.write(scorestring, False, align='left', font=('Arial', 14, 'normal'))
 
-            if (int(score) > int(comp_score)):
-               mypen.setposition(0, 0)
-               mypen.color('yellow')
-               mypen.write("You Win", False, align="center", font=("Arial", 28, "normal"))
-            else:
-               mypen.setposition(0, 0)
-               mypen.color("yellow")
-               mypen.write("You Loose", False, align="center", font=("Arial", 28, "normal"))
+            # if (int(score) > int(comp_score)):
+            #    mypen.setposition(0, 0)
+            #    mypen.color('yellow')
+            #    mypen.write("You Win", False, align="center", font=("Arial", 28, "normal"))
+            # else:
+            #    mypen.setposition(0, 0)
+            #    mypen.color("yellow")
+            #    mypen.write("You Loose", False, align="center", font=("Arial", 28, "normal"))
 
         #comp collision checking
         if isCollision(comp, food):
